@@ -6,6 +6,7 @@ var port = 8012;
 
 app.use('/js', express.static(__dirname + '/js'));
 app.use('/style', express.static(__dirname + '/style'));
+app.use('/images', express.static(__dirname + '/images'));
 app.use('/vendor', express.static(__dirname + '/node_modules'));
 app.use('/templates', express.static(__dirname + '/templates'));
 
