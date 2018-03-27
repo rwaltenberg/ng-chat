@@ -1,0 +1,101 @@
+.chat {
+    width: 800px;
+    max-width: 100%;
+    margin: 20px auto 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 30px rgba(0,0,0,.1);
+}
+
+.chat__header {
+    background-color: #00bd4f;
+    color: #fff;
+    padding: 10px 15px;
+    position: relative;
+}
+
+.chat__header:after {
+    content: '';
+    background-image: linear-gradient(rgba(0,0,0,.12), rgba(0,0,0,0));
+    height: 12px;
+    left: 0;
+    top: 100%;
+    right: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.chat__header__room-name {
+    font-size: 18px;
+}
+
+.chat__header__room-name:before {
+    content: '';
+    background-image: url('../images/icon-balloon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 30px;
+    margin-right: 8px;
+    display: inline-block;
+    vertical-align: -7px;
+}
+
+.chat__messages {
+    align-items: flex-start;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 100%;
+    padding: 20px;
+}
+
+.chat__messages__wrapper {
+    position: relative;
+    background-image: url('../images/background.jpg');
+    background-size: 60%;
+    height: calc(100vh - 195px);
+    overflow-y: auto;
+}
+
+.chat__form {
+    border-top: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.chat__form__input {
+    padding: 10px;
+    border: 0;
+    outline: none;
+    flex: 1 1 auto;
+}
+
+.chat__form__submit {
+    background-color: #00bd4f;
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    height: 30px;
+    margin: 0 5px;
+    outline: none;
+    padding-top: 3px;
+    text-indent: -1px;
+    width: 30px;
+}
+
+.chat__form__submit:hover,
+.chat__form__submit:focus {
+    background-color: #05a849;
+}
+
+.chat__form__submit:disabled {
+    background-color: #57e994;
+}
+
+.message {
+    margin-bottom: 20px;
+}

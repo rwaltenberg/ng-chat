@@ -2,12 +2,14 @@
     <header class="chat__header">
         <h1 class="chat__header__room-name">{{ room }}</h1>
     </header>
-    <ul class="chat__messages">
-        <li class="message" ng-class="['message--' + msg.type, msg.self ? 'message--self' : '']" ng-repeat="msg in messages">
-            <p class="message__text">{{ msg.text }}</p>
-            <small ng-if="msg.type == 'chat'" class="message__info"><span class="message__info__sender">{{ msg.sender }}</span> @ <time>{{ msg.time }}</time></small>
-        </li>
-    </ul>
+    <div class="chat__messages__wrapper">
+        <ul class="chat__messages">
+            <li class="message" ng-class="['message--' + msg.type, msg.self ? 'message--self' : '']" ng-repeat="msg in messages">
+                <p class="message__text">{{ msg.text }}</p>
+                <small ng-if="msg.type == 'chat'" class="message__info"><span class="message__info__sender">{{ msg.sender }}</span> @ <time class="message__info__time">{{ msg.time }}</time></small>
+            </li>
+        </ul>
+    </div>
     <form class="chat__form" name="form" ng-submit="send()">
         <input class="chat__form__input" type="text" ng-model="message" placeholder="Say something..." required>
         <button class="chat__form__submit" type="submit" ng-disabled="form.$invalid">

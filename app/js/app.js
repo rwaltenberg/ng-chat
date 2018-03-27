@@ -27,7 +27,7 @@
       templateUrl: 'templates/chat.html',
       scope: {},
       link: function (scope) {
-        var room = $rootScope.appData.room
+        var room = scope.room = $rootScope.appData.room
 
         if (room) {
           io.init({
