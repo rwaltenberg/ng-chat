@@ -19,8 +19,10 @@ io.on('connection', function (socket) {
     var response = {
       room: payload.room,
       time: moment().toObject(),
-      text: payload.message
+      sender: payload.message.sender,
+      text: payload.message.text
     }
+
     socket.to(payload.room).emit('event.response', response);
   });
 

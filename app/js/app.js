@@ -41,7 +41,11 @@
             return
           }
 
-          io.emit(scope.message);
+          io.emit({
+            sender: $rootScope.appData.nickname,
+            text: scope.message
+          });
+
           scope.message = null;
         }
 
