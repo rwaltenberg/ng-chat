@@ -1,16 +1,26 @@
 (function(){
   angular.module('myApp', ['io.service'])
 
-  .run(function (io) {
+  .run(['$rootScope', 'io', function ($rootScope, io) {
     io.init({
       ioServer: 'http://localhost:3696',
     });
 
-    moment.locale(navigator.language);
-  })
+    $rootScope.appData = {}
+  }])
 
+  .directive('welcome', ['$rootScope', function ($rootScope) {
+    return {
+      restrict: 'E',
+      templateUrl: 'templates/welcome.html',
+      scope: {},
+      link: function (scope) {
+        scope.save = function () {
+          angular.extend($rootScope.appData, scope.formData)
+        }
       }
     }
+  }])
 
   .directive('chat', ['$rootScope', 'io', function ($rootScope, io) {
     return {

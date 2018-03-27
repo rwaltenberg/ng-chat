@@ -7,7 +7,8 @@
 
 <body ng-app="myApp">
   <div class="app">
-    <chat></chat>
+    <welcome ng-if="!appData.nickname"></welcome>
+    <chat ng-if="appData.nickname"></chat>
   </div>
   <script src="js/angular.js"></script>
   <script src="//localhost:3696/socket.io/socket.io.js"></script>
