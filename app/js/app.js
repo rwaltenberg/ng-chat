@@ -2,7 +2,10 @@
   angular.module('myApp', ['io.service'])
 
   .run(['$rootScope', 'io', function ($rootScope, io) {
-    $rootScope.appData = {}
+    $rootScope.appData = {
+      nickname: 'Fulano',
+      room: 'Teste'
+    }
   }])
 
   .directive('welcome', ['$rootScope', function ($rootScope) {
@@ -33,10 +36,37 @@
           });
 
           io.subscribe();
+
+          io.emit({
+            type: 'info',
+            sender: $rootScope.appData.nickname,
+            text: $rootScope.appData.nickname + ' joined the room'
+          });
+
           console.log('Joined room ' + room)
         }
 
-        scope.messages = []
+        scope.messages = [
+          {
+            type: 'chat',
+            time: moment().subtract(120, 'seconds').format('L LT'),
+            sender: 'You',
+            text: 'Hello world!',
+            self: true
+          },
+          {
+            type: 'chat',
+            time: moment().subtract(90, 'seconds').format('L LT'),
+            sender: 'John Doe',
+            text: 'What?'
+          },
+          {
+            type: 'chat',
+            time: moment().subtract(70, 'seconds').format('L LT'),
+            sender: 'Jane',
+            text: 'He said "Hello" to the world'
+          }
+        ]
 
         scope.send = function () {
           if (!scope.message.trim()) {
@@ -44,14 +74,17 @@
           }
 
           io.emit({
+            type: 'chat',
             sender: $rootScope.appData.nickname,
             text: scope.message
           });
 
           scope.messages.push({
+            type: 'chat',
             time: moment().format('L LT'),
             sender: 'You',
-            text: scope.message
+            text: scope.message,
+            self: true
           });
 
           scope.message = null;
