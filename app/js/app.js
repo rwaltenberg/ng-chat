@@ -4,6 +4,8 @@ run(function (io) {
   io.init({
     ioServer: 'http://localhost:3696',
   });
+
+  moment.locale(navigator.language);
 }).
 
 controller('MainController', function ($scope, io) {
