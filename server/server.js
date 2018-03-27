@@ -2,6 +2,7 @@ var express = require('express');
 var server = require('http').createServer(app);
 var app = express();
 var io = require('socket.io')(server);
+var moment = require('moment')
 
 var port = 3696;
 
@@ -15,7 +16,11 @@ io.on('connection', function (socket) {
   socket.events = {};
 
   socket.on('event.message', function (payload) {
-    socket.emit('event.response', payload);
+    var response = {
+      time: moment().toObject(),
+      text: payload.message
+    }
+    socket.emit('event.response', response);
   });
 
   socket.on('event.subscribe', function (room) {

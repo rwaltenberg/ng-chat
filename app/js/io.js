@@ -14,7 +14,7 @@ factory('io', function ($http) {
       socket.on('event.response', function (data) {
         var message = data;
         if (data.room === ioRoom) {
-          return watches['message'](data.message);
+          return watches['message'](data);
         }
       });
 
