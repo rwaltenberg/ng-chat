@@ -36,6 +36,8 @@
           console.log('Joined room ' + room)
         }
 
+        scope.messages = []
+
         scope.send = function () {
           if (!scope.message.trim()) {
             return
@@ -46,12 +48,18 @@
             text: scope.message
           });
 
+          scope.messages.push({
+            time: moment().format('L LT'),
+            sender: 'You',
+            text: scope.message
+          });
+
           scope.message = null;
         }
 
         io.watch('message', function (data) {
           data.time = moment(data.time).format('L LT')
-          scope.lastMessage = data;
+          scope.messages.push(data);
           scope.$apply();
         });
       }

@@ -3,4 +3,4 @@
     <button type="submit" ng-disabled="form.$invalid">Send</button>
 </form>
 <hr>
-<h1 ng-if="lastMessage">[{{ lastMessage.time }}] {{ lastMessage.sender }} said: {{lastMessage.text}}</h1>
+<h1 ng-repeat="msg in messages">[{{ msg.time }}] {{ msg.sender }} said: {{msg.text}}</h1>
