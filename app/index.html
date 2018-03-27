@@ -6,13 +6,9 @@
 </head>
 
 <body ng-app="myApp">
-  <div ng-controller="MainController">
-    <form name="form" ng-submit="send()">
-        <input type="text" ng-model="message" required>
-        <button type="submit" ng-disabled="form.$invalid">Send</button>
-    </form>
-    <hr>
-    <h1 ng-if="lastMessage">[{{ lastMessage.time }}] {{lastMessage.text}}</h1>
+  <div class="app">
+    <welcome ng-if="!appData.nickname"></welcome>
+    <chat ng-if="appData.nickname"></chat>
   </div>
   <script src="js/angular.js"></script>
   <script src="//localhost:3696/socket.io/socket.io.js"></script>

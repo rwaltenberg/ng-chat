@@ -17,10 +17,13 @@ io.on('connection', function (socket) {
 
   socket.on('event.message', function (payload) {
     var response = {
+      room: payload.room,
       time: moment().toObject(),
-      text: payload.message
+      sender: payload.message.sender,
+      text: payload.message.text
     }
-    socket.emit('event.response', response);
+
+    socket.to(payload.room).emit('event.response', response);
   });
 
   socket.on('event.subscribe', function (room) {
