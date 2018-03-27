@@ -2,10 +2,6 @@
   angular.module('myApp', ['io.service'])
 
   .run(['$rootScope', 'io', function ($rootScope, io) {
-    io.init({
-      ioServer: 'http://localhost:3696',
-    });
-
     $rootScope.appData = {}
   }])
 
@@ -28,6 +24,18 @@
       templateUrl: 'templates/chat.html',
       scope: {},
       link: function (scope) {
+        var room = $rootScope.appData.room
+
+        if (room) {
+          io.init({
+            ioServer: 'http://localhost:3696',
+            ioRoom: room
+          });
+
+          io.subscribe();
+          console.log('Joined room ' + room)
+        }
+
         scope.send = function () {
           if (!scope.message.trim()) {
             return

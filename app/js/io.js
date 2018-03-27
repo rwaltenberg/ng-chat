@@ -12,13 +12,12 @@
         ioRoom = conf.ioRoom;
 
         socket = io.connect(conf.ioServer);
+
         socket.on('event.response', function (data) {
-          var message = data;
           if (data.room === ioRoom) {
             return watches['message'](data);
           }
         });
-
       },
 
       subscribe: function () {
