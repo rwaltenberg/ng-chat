@@ -68,6 +68,12 @@
           }
         ]
 
+        scope.$watchCollection('messages', function () {
+          setTimeout(function () {
+            document.querySelector('.chat__messages__wrapper').scrollTo(0,document.querySelector('.chat__messages__wrapper').scrollHeight);
+          }, 0);
+        })
+
         scope.send = function () {
           if (!scope.message.trim()) {
             return
