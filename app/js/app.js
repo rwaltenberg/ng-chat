@@ -10,6 +10,10 @@ run(function (io) {
 
 controller('MainController', function ($scope, io) {
   $scope.send = function () {
+    if (!$scope.message.trim()) {
+      return
+    }
+
     io.emit($scope.message);
     $scope.message = null;
   }
