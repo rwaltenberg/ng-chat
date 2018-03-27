@@ -9,11 +9,8 @@ run(function (io) {
 }).
 
 controller('MainController', function ($scope, io) {
-
   $scope.send = function () {
-    io.emit({
-      message: $scope.message
-    });
+    io.emit($scope.message);
     $scope.message = null;
   }
 
