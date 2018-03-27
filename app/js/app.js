@@ -24,7 +24,7 @@
       templateUrl: 'templates/chat.html',
       scope: {},
       link: function (scope) {
-        var room = $rootScope.appData.room
+        var room = scope.room = $rootScope.appData.room
 
         if (room) {
           io.init({
@@ -33,10 +33,23 @@
           });
 
           io.subscribe();
+
+          io.emit({
+            type: 'info',
+            sender: $rootScope.appData.nickname,
+            text: $rootScope.appData.nickname + ' joined the room'
+          });
+
           console.log('Joined room ' + room)
         }
 
         scope.messages = []
+
+        scope.$watchCollection('messages', function () {
+          setTimeout(function () {
+            document.querySelector('.chat__messages__wrapper').scrollTo(0,document.querySelector('.chat__messages__wrapper').scrollHeight);
+          }, 0);
+        })
 
         scope.send = function () {
           if (!scope.message.trim()) {
@@ -44,14 +57,17 @@
           }
 
           io.emit({
+            type: 'chat',
             sender: $rootScope.appData.nickname,
             text: scope.message
           });
 
           scope.messages.push({
+            type: 'chat',
             time: moment().format('L LT'),
             sender: 'You',
-            text: scope.message
+            text: scope.message,
+            self: true
           });
 
           scope.message = null;

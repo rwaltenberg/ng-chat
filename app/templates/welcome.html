@@ -1,7 +1,7 @@
 <div class="welcome">
-    <h1>Welcome!</h1>
+    <h1>Welcome do the mini-chat!</h1>
     <h2>Please enter your nickname and the room you want to join</h2>
-    <form name="form" ng-submit="save()">
+    <form class="welcome__form" name="form" ng-submit="save()">
         <div class="input-group">
             <label for="Nickname">Nickname:</label>
             <input type="text" ng-model="formData.nickname" id="Nickname" required>
@@ -11,7 +11,7 @@
             <input type="text" ng-model="formData.room" id="Room" required>
         </div>
         <div class="actions">
-            <button type="submit" ng-disabled="form.$invalid">Join</button>
+            <button type="submit" ng-disabled="form.$invalid">Join room</button>
         </div>
     </form>
 </div>
