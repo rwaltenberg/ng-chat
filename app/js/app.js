@@ -2,10 +2,7 @@
   angular.module('myApp', ['io.service'])
 
   .run(['$rootScope', 'io', function ($rootScope, io) {
-    $rootScope.appData = {
-      nickname: 'Fulano',
-      room: 'Teste'
-    }
+    $rootScope.appData = {}
   }])
 
   .directive('welcome', ['$rootScope', function ($rootScope) {
@@ -46,27 +43,7 @@
           console.log('Joined room ' + room)
         }
 
-        scope.messages = [
-          {
-            type: 'chat',
-            time: moment().subtract(120, 'seconds').format('L LT'),
-            sender: 'You',
-            text: 'Hello world!',
-            self: true
-          },
-          {
-            type: 'chat',
-            time: moment().subtract(90, 'seconds').format('L LT'),
-            sender: 'John Doe',
-            text: 'What?'
-          },
-          {
-            type: 'chat',
-            time: moment().subtract(70, 'seconds').format('L LT'),
-            sender: 'Jane',
-            text: 'He said "Hello" to the world'
-          }
-        ]
+        scope.messages = []
 
         scope.$watchCollection('messages', function () {
           setTimeout(function () {
