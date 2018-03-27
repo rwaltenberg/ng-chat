@@ -15,7 +15,8 @@ controller('MainController', function ($scope, io) {
   }
 
   io.watch('message', function (data) {
-    $scope.lastMessage = data.message;
+    data.time = moment(data.time).format('L LT')
+    $scope.lastMessage = data;
     $scope.$apply();
   });
 });
